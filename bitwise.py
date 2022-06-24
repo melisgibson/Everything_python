@@ -8,10 +8,10 @@ print(a)
 # prints the binary 
 print(bin(a)) 
 
-# bitwise OR operator
+# bitwise OR operator, prints a "1" when there is "1" in either position
 print(bin(a | b))
 
-# bitwise AND operator
+# bitwise AND operator, prints a "1" when there is a "1" in both positions
 print(bin(a & b))
 
 # bitwise XOR operator
