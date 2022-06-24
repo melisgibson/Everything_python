@@ -14,7 +14,7 @@ print(bin(a | b))
 # bitwise AND operator, prints a "1" when there is a "1" in both positions
 print(bin(a & b))
 
-# bitwise XOR operator
+# bitwise XOR operator, prints "1" if only one of the bits is "1", but will be "0" if both are "0" or both are "1"
 print(bin(a ^ b))
 
 # shift operator right shift
