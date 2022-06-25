@@ -13,5 +13,5 @@ print("Words:", words)
 
 # sorts first word and last word
 sorted_words = sorted(words)
-print("Alphabetic First Word:", sorted_words[0])
+print("Alphabetic First Word:", sorted_words[0]) 
 print("Alphabetic Last Word:", sorted_words[-1])
