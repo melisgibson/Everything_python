@@ -1,4 +1,6 @@
 # EC2 Random Name Generator
+import random
+import string
 
 while True: 
     dept_name = input("Name of your department: ").lower()
@@ -9,8 +11,6 @@ while True:
     else:
        break
    
-import random
-import string
 def ec2_id(length = 4):
     characters = (string.ascii_letters+string.digits)
     return ''.join(random.choice(characters) for i in range(length))
