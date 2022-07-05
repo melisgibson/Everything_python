@@ -8,11 +8,3 @@ response = s3.upload_file(
     Bucket = 'mypythonpractice2', 
     Key = 'newfile.txt')
     
-response = s3.list_objects(Bucket = "mypythonpractice2")["Contents"] # sets the reponse to list the contents of the object in the bucket
-
-objects = response
-
-for object in objects:
-    print(object["Key"]) # prints the object key
-    
-
