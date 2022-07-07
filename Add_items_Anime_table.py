@@ -15,6 +15,8 @@ with table.batch_writer() as batch:
     batch.put_item(Item={"episodes": 1115, "title": "Pokemon"})
     batch.put_item(Item={"episodes": 24, "title": "Parasyte"})
     batch.put_item(Item={"episodes": 73, "title": "Sword Art Online"})
+    batch.put_item(Item={"episodes": 86, "title": "Attack on Titan"})
+    batch.put_item(Item={"episodes": 37, "titel": "Death Note"})
     
 print(batch)
 
