@@ -22,4 +22,5 @@ def lambda_handler(event, context):
         # Stop the instances
         for instance in instances:
             instance.stop() # can change to start
+
             print('Stopped instance: ', instance.id)
