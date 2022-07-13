@@ -4,7 +4,7 @@ import boto3
 
 dynamodb = boto3.resource(
     'dynamodb',
-    aws_access_key_id='AKIAQMYWJSHVI5OBGKS6', # Input access key id
-    aws_secret_access_key='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', # Input secret key
+    aws_access_key_id='******', # Input access key id
+    aws_secret_access_key='*****', # Input secret key
     )
     
