@@ -3,6 +3,18 @@ import json
 import random
 import string
 
+def lambda_handler(event, context):
 
-random_num = string.digits
-print ( ''.join(random.choice(random_num) for i in range(10)))
+    num = string.digits
+    random_num = ( ''.join(random.choice(num) for i in range(10)))
+    
+    sqs = boto3.client('sqs')
+    
+    sqs.send_message(
+        QueueUrl="https://sqs.us-east-1.amazonaws.com/027427181034/random-num-queue",
+        MessageBody=random_num)
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Processed')
+        }
