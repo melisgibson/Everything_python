@@ -7,6 +7,7 @@ def lambda_handler(event, context):
 
     num = string.digits
     random_num = ( ''.join(random.choice(num) for i in range(10)))
+    message = "You are user: "+str(random_num)
     
     sqs = boto3.client('sqs')
     
@@ -16,5 +17,5 @@ def lambda_handler(event, context):
 
     return {
         'statusCode': 200,
-        'body': json.dumps('Processed')
+        'body': json.dumps(message)
         }
