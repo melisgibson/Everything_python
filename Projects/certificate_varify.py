@@ -1,6 +1,10 @@
 import ssl
 import socket
 import datetime
+import smtplib
+import boto3
+
+client = boto3.client("ses", region_name="us-east-1")
 
 print(f"Program to check SSL certificate validity and expiration date\n")
 
@@ -9,6 +13,7 @@ with open("server_ip.txt") as ip_file:
 
     ##check  certificate expiration
     for ip in ip_file:
+
         try:
             host, port = ip.strip().split(":")
             print(f"\nChecking certifcate for server {host}")
@@ -21,9 +26,32 @@ with open("server_ip.txt") as ip_file:
                 )
                 daysToExpiration = (certExpires - datetime.datetime.now()).days
                 print(f"Expires on: {certExpires} in {daysToExpiration} days")
+                mailbody = "Server name: "+host+", days to expiration: "+str(daysToExpiration)+"."
+
 
         except:
             print(f"error on connection to Server, {host}")
+
+        if daysToExpiration < 45 :
+
+            response = client.send_email(
+                Destination={
+                    "ToAddresses": ["user@gmail.com"],
+                },
+                Message={
+                    "Body": {
+                        "Text": {
+                            "Charset": "UTF-8",
+                            "Data": "The following requires attention; " + mailbody+"\nThank you.",
+                        },
+                    },
+                    "Subject": {
+                        "Charset": "UTF-8",
+                        "Data": "Certificate Expiring Soon",
+                    },
+                },
+                Source="user@gmail.com",
+            )
 
 
 print(f"\nCert check complete!")
