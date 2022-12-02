@@ -1,7 +1,6 @@
 import ssl
 import socket
 import datetime
-import smtplib
 import boto3
 
 client = boto3.client("ses", region_name="us-east-1")
@@ -37,12 +36,12 @@ with open("server_ip.txt") as ip_file:
 
         except:
             print(f"error on connection to Server, {host}")
-            
+
         ##sending ses email
         if daysToExpiration < 45:
             response = client.send_email(
                 Destination={
-                    "ToAddresses": ["user@gmail.com"],
+                    "ToAddresses": ["melcassidy45@gmail.com"],
                 },
                 Message={
                     "Body": {
@@ -58,7 +57,7 @@ with open("server_ip.txt") as ip_file:
                         "Data": "Certificate Expiring Soon",
                     },
                 },
-                Source="user@gmail.com",
+                Source="melcassidy45@gmail.com",
             )
 
 print(f"\nCert check complete!")
