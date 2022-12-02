@@ -26,6 +26,7 @@ with open("server_ip.txt") as ip_file:
                 )
                 daysToExpiration = (certExpires - datetime.datetime.now()).days
                 print(f"Expires on: {certExpires} in {daysToExpiration} days")
+                ##preparing mailbody
                 mailbody = (
                     "Server name: "
                     + host
@@ -36,7 +37,8 @@ with open("server_ip.txt") as ip_file:
 
         except:
             print(f"error on connection to Server, {host}")
-
+            
+        ##sending ses email
         if daysToExpiration < 45:
             response = client.send_email(
                 Destination={
