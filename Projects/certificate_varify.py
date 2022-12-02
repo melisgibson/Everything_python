@@ -26,14 +26,18 @@ with open("server_ip.txt") as ip_file:
                 )
                 daysToExpiration = (certExpires - datetime.datetime.now()).days
                 print(f"Expires on: {certExpires} in {daysToExpiration} days")
-                mailbody = "Server name: "+host+", days to expiration: "+str(daysToExpiration)+"."
-
+                mailbody = (
+                    "Server name: "
+                    + host
+                    + ", expires in "
+                    + str(daysToExpiration)
+                    + " days."
+                )
 
         except:
             print(f"error on connection to Server, {host}")
 
-        if daysToExpiration < 45 :
-
+        if daysToExpiration < 45:
             response = client.send_email(
                 Destination={
                     "ToAddresses": ["user@gmail.com"],
@@ -42,7 +46,9 @@ with open("server_ip.txt") as ip_file:
                     "Body": {
                         "Text": {
                             "Charset": "UTF-8",
-                            "Data": "The following requires attention; " + mailbody+"\nThank you.",
+                            "Data": "The following requires attention; "
+                            + mailbody
+                            + "\nThank you.",
                         },
                     },
                     "Subject": {
@@ -52,6 +58,5 @@ with open("server_ip.txt") as ip_file:
                 },
                 Source="user@gmail.com",
             )
-
 
 print(f"\nCert check complete!")
